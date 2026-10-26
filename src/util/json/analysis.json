@@ -18,7 +18,7 @@
     
     "graficos": {
         "graficos_por_corrida": false,
-        "modo_logaritmico": "auto",
+        "modo_logaritmico": "log_scale",
         "dpi": 300
     }
 }

@@ -41,6 +41,7 @@ from .Codes.WO import iterarWO
 from .Codes.DHOA import iterarDHOA
 from .Codes.CLO import iterarCLO
 from .Codes.TJO import iterarTJO
+from .Codes.TOA import iterarTOA
 # --- Diccionario central de metaheurísticas
 
 metaheuristics = {
@@ -71,6 +72,7 @@ metaheuristics = {
     "SSO": iterarSSO,
     "TDO": iterarTDO,
     "TJO": iterarTJO,
+    "TOA": iterarTOA,
     "WOA": iterarWOA,
     "WOM": iterarWOM,
     "DLO": iterarDLO,
@@ -155,6 +157,7 @@ MH_ARG_MAP = {
     # T
     'TDO':   ('maxIter', 'iter', 'dim', 'population', 'fitness', 'fo', 'objective_type'),
     'TJO':   ('maxIter', 'iter', 'dim', 'population', 'fitness', 'best', 'pBest', 'lb', 'ub', 'fo'),
+    'TOA':   ('population', 'fitness', 'fo'),
 
     # W
     'WO' :   ('maxIter', 'iter', 'dim', 'population', 'fitness', 'best', 'fo', 'lb', 'ub'),

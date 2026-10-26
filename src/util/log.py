@@ -156,8 +156,8 @@ def escribir_resumenes(mhs_instances, archivoResumenFitness, archivoResumenTimes
         # Fitness
         if len(mh.fitness):
             min_fit = float(np.min(mh.fitness))
-            avg_fit = float(np.round(np.mean(mh.fitness), 3))
-            std_fit = float(np.round(np.std(mh.fitness), 3))
+            avg_fit = float(np.mean(mh.fitness))
+            std_fit = float(np.std(mh.fitness))
         else:
             min_fit = np.nan
             avg_fit = np.nan

@@ -39,6 +39,9 @@ MH_RETURNS_FIT_BEST = {'GOAT'}
 # MH que retorna (population, fitness, pBest) — evalúa internamente
 MH_RETURNS_FIT_PBEST = {'TJO'}
 
+# MH that evaluates candidates internally and returns (population, fitness).
+MH_RETURNS_FITNESS = {'TOA'}
+
 # MH que retorna solo un np.ndarray (sin vel)
 MH_RETURNS_ARRAY_ONLY = {'APO', 'CLO'}
 
@@ -230,6 +233,14 @@ class MetaheuristicAdapter:
             # TJO: retorna (population, fitness, pBest)
             if isinstance(result, tuple) and len(result) == 3:
                 new_population, fitness, mh_state['pBest'] = result
+            else:
+                raise TypeError(f"Retorno inesperado de {mh}.")
+
+        elif self.mh_name in MH_RETURNS_FITNESS:
+            # TOA's three greedy stages must retain their internally evaluated
+            # fitness; the second element is not a velocity vector.
+            if isinstance(result, tuple) and len(result) == 2:
+                new_population, fitness = result
             else:
                 raise TypeError(f"Retorno inesperado de {mh}.")
 

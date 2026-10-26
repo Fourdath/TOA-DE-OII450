@@ -14,18 +14,18 @@
         "mapas_caoticos": " NUEVO: Configuración de mapas caóticos para experimentos",
         "usar_mapas_caoticos": " NUEVO: Activar/desactivar mapas caóticos globalmente"
     },
-    "ben": false,
-    "scp": true,
+    "ben": true,
+    "scp": false,
     "uscp": false,
     "kp": false,
     "mhs": [
-        "SBOA"
+        "TOA"
     ],
     "DS_actions": [
         "V3-ELIT"
     ],
     "_comentario_mapas_caoticos": "========== CONFIGURACIÓN DE MAPAS CAÓTICOS ==========",
-    "usar_mapas_caoticos": true,
+    "usar_mapas_caoticos": false,
     "mapas_caoticos": {
         "_comentario": "Configuración de mapas caóticos. Cada problema puede tener su propia configuración.",
         "modo": "comparacion",
@@ -243,10 +243,10 @@
     },
     "experimentos": {
         "modo_terminacion": "iter",
-        "max_fe": 50000,
+        "max_fe": null,
         "BEN": {
-            "iteraciones": 500,
-            "poblacion": 50,
+            "iteraciones": 50,
+            "poblacion": 20,
             "num_experimentos": 1
         },
         "SCP": {
@@ -267,16 +267,7 @@
     },
     "instancias": {
         "BEN": [
-            "F1CEC2017",
-            "F2CEC2017",
-            "F3CEC2017",
-            "F4CEC2017",
-            "F5CEC2017",
-            "F6CEC2017",
-            "F7CEC2017",
-            "F8CEC2017",
-            "F9CEC2017",
-            "F10CEC2017"
+            "F1"
         ],
         "SCP": [
             "41"

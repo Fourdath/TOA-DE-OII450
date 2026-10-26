@@ -62,6 +62,12 @@ def universal_solver(id, mh_name, domain, termination, extra_params=None):
                       - GOAT: {'jump_prob': 0.3, 'filter_ratio': 0.5}
                       - GA (SCP): {'cross': 0.8, 'muta': 0.5}
     """
+    # Baseline TOA is implemented for the continuous benchmark domain only.
+    # Its internal objective calls are not interchangeable with the SCP/USCP
+    # binarization-and-repair pipeline used after each standard iteration.
+    if mh_name == 'TOA' and domain.domain_type != 'BEN':
+        raise ValueError('TOA actualmente admite solo el dominio BEN continuo.')
+
     # ==================== SETUP ====================
     bd = BD()
     dirResult = "./outputs/results/transitorio/"
@@ -162,12 +168,12 @@ def universal_solver(id, mh_name, domain, termination, extra_params=None):
         time0 = initializationTime2 - initializationTime1
 
         lines_results.append(
-            f"0,{domain.nfe},{bestFitness:.6e},{meanFitness0:.6f},{stdFitness0:.6f},"
-            f"{time0:.3f},{XPL:.6f},{XPT:.6f},{maxDiversity:.6f},"
-            f"{gap0:.6f},{rdp0:.6f},{ent_avg0:.6f},"
-            f"{divj_mean0:.6f},{divj_min0:.6f},{divj_max0:.6f}\n"
+            f"0,{domain.nfe},{bestFitness:.17g},{meanFitness0:.17g},{stdFitness0:.17g},"
+            f"{time0:.3f},{XPL:.6f},{XPT:.6f},{maxDiversity:.17g},"
+            f"{gap0:.17g},{rdp0:.17g},{ent_avg0:.6f},"
+            f"{divj_mean0:.17g},{divj_min0:.17g},{divj_max0:.17g}\n"
         )
-        lines_divj.append("0," + ",".join([f"{v:.6f}" for v in divj_vec0]) + "\n")
+        lines_divj.append("0," + ",".join([f"{v:.17g}" for v in divj_vec0]) + "\n")
 
         # Logging de consola
         label = domain.get_console_label(mh_name)
@@ -251,14 +257,14 @@ def universal_solver(id, mh_name, domain, termination, extra_params=None):
 
             # --- 9. Buffer CSV ---
             lines_results.append(
-                f"{iter_num},{domain.nfe},{bestFitness:.6e},"
-                f"{meanFitness:.6f},{stdFitness:.6f},"
-                f"{dt:.3f},{XPL:.6f},{XPT:.6f},{div_t:.6f},"
-                f"{gap:.6f},{rdp:.6f},{ent_avg:.6f},"
-                f"{divj_mean:.6f},{divj_min:.6f},{divj_max:.6f}\n"
+                f"{iter_num},{domain.nfe},{bestFitness:.17g},"
+                f"{meanFitness:.17g},{stdFitness:.17g},"
+                f"{dt:.3f},{XPL:.6f},{XPT:.6f},{div_t:.17g},"
+                f"{gap:.17g},{rdp:.17g},{ent_avg:.6f},"
+                f"{divj_mean:.17g},{divj_min:.17g},{divj_max:.17g}\n"
             )
             lines_divj.append(
-                f"{iter_num}," + ",".join([f"{v:.6f}" for v in divj_vec]) + "\n"
+                f"{iter_num}," + ",".join([f"{v:.17g}" for v in divj_vec]) + "\n"
             )
 
             # --- 10. Consola ---

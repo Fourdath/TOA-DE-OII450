@@ -23,7 +23,7 @@ if PROJECT_ROOT not in sys.path:
 from bd.sqlite import BD
 from util.log import resumen_experimentos
 from util.util import cargar_configuracion
-from scripts.crearBD import crear_BD
+from Scripts.crearBD import crear_BD
 
 # Cargar configuración desde JSON
 config = cargar_configuracion("util/json/experiments_config.json")
@@ -299,7 +299,10 @@ def insertar_experimentos(
     global cantidad, log_resumen, _batch_valores
 
     # Cachear binarizaciones fuera del loop (solo depende de problemaActual)
-    binarizaciones = generar_binarizaciones_desde_json(problemaActual)
+    binarizaciones = (
+        [None] if problemaActual == "BEN"
+        else generar_binarizaciones_desde_json(problemaActual)
+    )
 
     for instancia in instancias:
         for dim in dimensiones:
